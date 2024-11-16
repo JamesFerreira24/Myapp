@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import React from 'react';
+import image from './img/pople.svg'
+
 import './App.css';
 
 function App() {
+  const [comentario, setcomentario] = React.useState()
+  const [todososcomentarios, settodosossetcomentarios] = React.useState([])
+
+  function digiteinotextarea(eventodotextarea){
+    setcomentario(eventodotextarea.target.value)
+  }
+
+  function cliqueinobotao(){
+     const todososcomentariosanteriores = [...todososcomentarios, comentario]
+    settodosossetcomentarios(todososcomentariosanteriores)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div >
+      <img src={image} alt="imagem-pessoas" />
+      <textarea onChange={digiteinotextarea}></textarea>
+      <button onClick={cliqueinobotao}>Comentar</button>
+
+      <ul>
+        {todososcomentarios.map( Coment => (
+          <li key={Coment}>{Coment}</li>
+        
+        ))}
+      </ul>
+      </div>
   );
 }
 
